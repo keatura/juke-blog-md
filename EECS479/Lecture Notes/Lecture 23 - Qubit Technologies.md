@@ -8,6 +8,7 @@ https://drive.google.com/drive/folders/1eR1JulKZvfqgYYjRJdsHqli2jlJnGUfF
 		- out tomorrow probs
 	- One more lab
 	- Lab due Thurs
+	- **NOTE:** memorize DiVincenzo's criteria but that's about it for that
 
 ## Pre-Lecture
 - Main Idea:
@@ -70,4 +71,68 @@ https://drive.google.com/drive/folders/1eR1JulKZvfqgYYjRJdsHqli2jlJnGUfF
 
 ## Revisiting Physical Implementations
 - **How to build qubits**
-	- 
+	- Need a way to isolate qubits from an environment in order to make them behave as we would expect a qubit to
+	- Superposition lost upon interaction w/ enviro
+		- ie. CEFR, radiation, light
+	- Make them cold
+	- **DiVincenzo's Criteria:**
+		- Set of conditions proposed to be necessary to build PRACTICAL qc
+			1. Sufficiently large # of addressable qubits
+			2. Able to initialize qubits to 0-state
+			3. Qubit states hold for sufficiently long time
+			4. Elementary logical ops performable
+			5. Able to read out results/return values of measurements
+		- Essentially all must be met
+
+- **Ion Traps**
+	- General Idea:
+		- Suspend gas atoms in magnetic fields
+		- Implement cooldown step with lasers
+		- Qubit state = whether atom in lower or higher energy state
+		
+	- Transition to higher energy level (0 -> 1) implemented as qubit absorbing a photon, same actually to lower (absorb again)
+		- Longer pulse = higher likelihood of absorption
+		- Essentially longer time = superposition more weighted towards one way or the other
+	- Phase = phase of electron wave moving around atom nucleus
+		- Alter phase of light incoming to alter phase of atom it acts upon
+	- Multi-Qubit gates:
+		- Certain light frequencies make electrons jump, others make atoms vibrate back and forth
+			- Atoms bump into one another & change state
+		- Carefully organize atoms to cause other atoms to change state based on specific other atoms
+	- Measurement:
+		- If atom in 1-state, there must exist a frequency such that it jumps to an even higher state before jumping down
+			- Same frequency would have no effect on 0-state
+		- Implement measurement by shining laser at this frequency, and seeing if there is a delayed emission
+			- Delayed emission happens = 1
+			- No delayed emission = 0
+	- **DiVincenzo's Criteria Analysis:**
+		- Pretty good except for dealing with entropy
+	- **Pros**
+		- Can be built at room temperature, qubits last for long time before decaying naturally and ruining computation (qubits keep for a long time)
+	- **Cons**
+		- Frequencies to use are difficult to engineer
+		- Gates are really slow
+
+- **Electric Oscillators**
+	- Main idea: engineer an artificial atom/system with similar properties
+		- Discrete energy levels exist
+		- Superpositions exist
+		- Gets around frequency issues of Ion Traps
+	- Energy flows between electric field in capacitor and magnetic field in inductor
+		- The small energy gaps between energy levels are used to represent distinct states
+	- **Pros**
+		- Fast, cheap
+	- **Cons**
+		- Electronic circuits by nature are frequently interacting with their environment
+			- Electrons bump into things as they travel, radiating energy in form of heat
+		- Superpositions thus won't last long
+	- **Superconductivity**
+		- If supercooled (near absolute zero), electrons will stick closer together and resistance drops to 0
+			- Collisions become completely elastic
+		- Resistance literally goes to 0
+		- **Transmon Qubits**
+			- Non-linear LC circuits cooled to near-absolute zero
+				- 0 = lowest energy
+				- 1 = higher energy
+			- Can design qubits to have different frequencies + are MUCH easier to build
+			- Only need gigahertz-range frequencies
