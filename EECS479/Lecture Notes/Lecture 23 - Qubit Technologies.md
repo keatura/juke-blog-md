@@ -31,6 +31,7 @@ https://drive.google.com/drive/folders/1eR1JulKZvfqgYYjRJdsHqli2jlJnGUfF
 	- T-gate:
 		- Use quantum teleportation + prepared ancilla to mimic t-gate
 		- Provable that can't have full set of gates
+
 - **Error Correction**
 	- **Slide 4**:
 		- Works, but if some error ie. phase kickback is applied to ancilla, very likely to propagate to multiple qubits, BAD
@@ -48,3 +49,25 @@ https://drive.google.com/drive/folders/1eR1JulKZvfqgYYjRJdsHqli2jlJnGUfF
 		- (Almost) Any errors that occur here can be fixed by error correction!
 			- Repeat entire procedure multiple times + take majority vote to reduce chance of error by a lot,
 			- Error can still multiply but wont propagate to data
+
+- **Summary**
+	- Steps to fault-tolerantly apply a T-gate using steane code
+		1. Expand Logical qubit to 7 physical qubits
+		2. Encode Steane state (~15 gates)
+		3. Perform encoded T-gate
+			- Requires 7 ancilla qubits
+			1. initialize ancilla, requires 7 other ancilla + another 6 to verify ancilla state
+			2. 7 gates to prepare, 80 to verify, 7 to perform controlled ops, 7 to decode
+			3. Repeat >= 3 times & take majority vote to reduce errors (~300 gates for state prep)
+		4. Perform measurement + conditional ops (~28 gates)
+		5. Perform error correction, (~148 gates total)
+	- 22 physical qubits, 500 gates AT LEAST
+	- Fails if 2 errors, might need to concatenate if error rate too high
+		- Exponentially multiplies the number of qubits
+	- Fault tolerance is extremely expensive
+		- 1000s of qubits needed to implement fault tolerance
+		- At ~1000 qubits on a chip right now
+
+## Revisiting Physical Implementations
+- **How to build qubits**
+	- 
